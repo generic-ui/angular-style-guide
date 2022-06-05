@@ -75,3 +75,19 @@ export class ModelComponent implements OnChanges, OnInit, DoCheck, AfterContentI
 
 
 ```
+
+## Input
+- Required inputs should be specified in the selector,
+- Required inputs should be declared with an exclamation mark(non-null assertion),
+- Optional inputs should be assigned with value,
+- When the previous point is not possible not required inputs should be declared as optional with ? mark.
+
+## Output
+- Always initialize output variables on the declaration - assign value with new EventEmitter(),
+- Declare property as readonly so no one reassigns it with a new value,
+- Specify the type of EventEmitter.
+
+## Query
+- Declared as optional - they cannot be assigned at the start,
+- Always specify readonly - developer can only read the value of the query property. The framework's responsibility is to set its value,
+- Always specify correct read type.
