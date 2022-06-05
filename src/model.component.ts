@@ -1,10 +1,25 @@
-# Style guide for Anguar
-Opinionated style guide for Angular
+import {
+	AfterContentChecked,
+	AfterContentInit,
+	AfterViewChecked,
+	AfterViewInit,
+	ChangeDetectionStrategy,
+	Component,
+	ContentChild,
+	ContentChildren,
+	DoCheck,
+	EventEmitter,
+	Input,
+	OnChanges,
+	OnDestroy,
+	OnInit,
+	Output,
+	ViewChild,
+	ViewChildren,
+	ViewEncapsulation
+} from '@angular/core';
 
-#
 
-
-```
 @Component({
 	selector: 'div[model][entry]',
 	templateUrl: './model.component.html',
@@ -44,7 +59,7 @@ export class ModelComponent implements OnChanges, OnInit, DoCheck, AfterContentI
 	readonly valueChanged = new EventEmitter<string>();
 
 	constructor(private readonly elementRef: ElementRef,
-	            private readonly httpClient: HttpClient) {
+				private readonly httpClient: HttpClient) {
 	}
 
 	ngOnChanges(changes: NgChanges<ModelComponent>): void {
@@ -73,5 +88,3 @@ export class ModelComponent implements OnChanges, OnInit, DoCheck, AfterContentI
 
 }
 
-
-```
