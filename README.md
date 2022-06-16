@@ -6,7 +6,7 @@ Opinionated style guide for Angular
 
 ```
 @Component({
-	selector: 'div[model][entry]',
+	selector: 'div[model][requiredInput]',
 	templateUrl: './model.component.html',
 	styleUrls: [
 		'./model.component.scss'
@@ -48,6 +48,10 @@ export class ModelComponent implements OnChanges, OnInit, DoCheck, AfterContentI
 	}
 
 	ngOnChanges(changes: NgChanges<ModelComponent>): void {
+	
+	    if (changes.requiredInput?.currentValue) {
+	        // run code
+	    }
 	}
 
 	ngOnInit(): void {
@@ -80,7 +84,8 @@ export class ModelComponent implements OnChanges, OnInit, DoCheck, AfterContentI
 - Required inputs should be specified in the selector,
 - Required inputs should be declared with an exclamation mark(non-null assertion),
 - Optional inputs should be assigned with value,
-- When the previous point is not possible not required inputs should be declared as optional with ? mark.
+- When the previous point is not possible not required inputs should be declared as optional with ? mark,
+- Don't use setters for inputs, use ngOnChanges instead.
 
 ## Output
 - Always initialize output variables on the declaration - assign value with new EventEmitter(),
@@ -91,3 +96,41 @@ export class ModelComponent implements OnChanges, OnInit, DoCheck, AfterContentI
 - Declared as optional - they cannot be assigned at the start,
 - Always specify readonly - developer can only read the value of the query property. The framework's responsibility is to set its value,
 - Always specify correct read type.
+
+## Life cycle hooks
+- Declare in a component in the order of invocation:
+  - ngOnChanges,
+  - ngOnInit,
+  - ngDoCheck,
+  - ngAfterContentInit,
+  - ngAfterContentChecked,
+  - ngAfterViewInit,
+  - ngAfterViewChecked,
+  - ngOnDestroy.
+- Always specify that component implements interfaces related to the used Life Cycle Hooks
+
+
+
+### ngOnChanges
+- Use for running code when one or many inputs changes 
+
+### ngOnInit
+- Initialize component, services, etc.
+
+### ngDoCheck
+- Don't use this method in production code, only for debugging specific cases
+
+
+# Meta
+- Don't use this properties in Component Metdata:
+  - moduleId,
+  - interpolation,
+  - entryComponents,
+  - preserveWhitespaces,
+  - inputs,
+  - outputs,
+  - queries,
+  - jit.
+
+## Articles
+- Angular component practices - https://generic-ui.com/blog/angular-component-practices
